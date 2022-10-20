@@ -1,7 +1,8 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import IsLoggedInReducer from "./IsLoggedInSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: { isLoggedIn: IsLoggedInReducer },
 });
 
 export type AppDispatch = typeof store.dispatch;
