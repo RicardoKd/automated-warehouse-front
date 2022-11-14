@@ -8,6 +8,7 @@ import { SLICE_NAMES } from "../constants";
 const initialState: IIsLoggedInState = {
   status: "idle",
   value: false,
+  customerId: null,
 };
 
 export const IsLoggedInSlice = createSlice({
@@ -16,23 +17,23 @@ export const IsLoggedInSlice = createSlice({
   reducers,
   extraReducers: (builder) => {
     builder
-      .addCase(logIn.pending, (state) => {
-        state.status = "loading";
-      })
-      .addCase(logIn.fulfilled, (state) => {
-        state.status = "succeeded";
-        state.value = true;
-      })
-      .addCase(logIn.rejected, (state) => {
-        state.status = "failed";
-        state.value = false;
-      });
+      .addCase(logIn.pending, (state) => ({ ...state, status: "loading" }))
+      .addCase(logIn.fulfilled, (_state, action) => ({
+        status: "fulfilled",
+        value: true,
+        customerId: action.payload,
+      }))
+      .addCase(logIn.rejected, () => ({
+        status: "failed",
+        value: false,
+        customerId: null,
+      }));
   },
 });
 
 export const { logOut } = IsLoggedInSlice.actions;
 
 export const selectIsLoggedInState = (state: RootState) => state.isLoggedIn;
-export const selectRenderedCoins = (state: RootState) => state.isLoggedIn.value;
+export const selectIsLoggedIn = (state: RootState) => state.isLoggedIn.value;
 
 export default IsLoggedInSlice.reducer;

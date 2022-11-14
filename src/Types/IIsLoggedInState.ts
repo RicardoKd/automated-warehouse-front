@@ -1,4 +1,5 @@
 export default interface IIsLoggedInState {
-  status: 'idle' | 'loading' | 'succeeded' | 'failed',
+  status: "idle" | "loading" | "fulfilled" | "failed";
   value: boolean;
+  customerId: string | null;
 }

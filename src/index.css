@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
 
 * {
   margin: 0;
@@ -7,12 +9,93 @@
   font-family: "Roboto", sans-serif;
 }
 
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
 html,
 body {
   width: 100%;
   height: 100%;
+  background-color: #12130f;
 }
 
 .mr-20 {
   margin-right: 20px !important;
 }
+
+
+/*
+  Material bubble styles
+*/
+
+.material-bubble {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+}
+
+.material-bubble:active {
+  transform: translateY(3px);
+}
+
+.material-bubble {
+  position: relative;
+  background-color: white;
+  color: #1b1b20;
+  border: none;
+  overflow: hidden;
+  box-shadow: none;
+  transition: color 0.5s, transform 0.2s, background-color 0.2s;
+  outline: none;
+}
+
+.material-bubble:hover {
+  color: #e6e6e6;
+  background-color: transparent;
+}
+
+.material-bubble::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s, border 0.3s;
+}
+
+.material-bubble:hover::before {
+  opacity: 0;
+}
+
+.material-bubble span {
+  z-index: 999;
+  position: relative;
+}
+
+.material-bubble::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  background-color: #6b5b95;
+  border-color: transparent;
+  border-radius: 50%;
+  transform: translate(-10px, -70px) scale(0.1);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
+}
+
+.material-bubble:hover::after {
+  opacity: 1;
+  transform-origin: 100px 100px;
+  transform: scale(1) translate(-10px, -70px);
+}
+
+/*
+  Material bubble styles end
+*/

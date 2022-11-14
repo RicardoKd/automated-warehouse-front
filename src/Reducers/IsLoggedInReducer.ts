@@ -5,29 +5,26 @@ import { BASE_URL } from "../constants";
 export const logIn = createAsyncThunk(
   "logIn",
   async (payload: { email: string; password: string }) => {
-    const { email, password } = payload;
-
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify(payload),
     };
 
     try {
-      const response = await fetch(BASE_URL + "logIn", requestOptions);
-      const isJson = response.headers
-        .get("content-type")
-        ?.includes("application/json");
-      const data = isJson && (await response.json());
+      const response = await fetch(BASE_URL + "customer/logIn", requestOptions);
 
       if (!response.ok) {
-        // get error message from body or default to response status
-        const error = (data && data.message) || response.status;
-
-        return Promise.reject(error);
+        console.log("not ok");
+        return Promise.reject("error");
       }
+
+      const responseJSON = await response.json();
+
+      return responseJSON.payload.customerId;
     } catch (error) {
-      console.log(error);
+      console.log("failled to login", error);
+      return Promise.reject("failled to login");
     }
   },
 );

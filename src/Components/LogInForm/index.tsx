@@ -1,29 +1,41 @@
-import { useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
+import { useEffect, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectIsLoggedIn } from "../../app/IsLoggedInSlice";
 import { logIn } from "../../Reducers/IsLoggedInReducer";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../constants";
 
-// import styles from "./SignIn.module.css";
-
-const LogIn = () => {
-  const [email, setEmail] = useState("example@mail.com");
+const LogInForm = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  function clearPassword() {
+    setPassword("");
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
     dispatch(logIn({ email, password }));
-
-    console.log("The form was submitted with the following data:");
+    clearPassword();
   };
+
+  useEffect(() => {
+    console.log(`logInForm useEff. isLoggedIn: ${isLoggedIn}`);
+    if (isLoggedIn) {
+      navigate(ROUTES.MY_CABINET);
+    }
+  }, [isLoggedIn]);
 
   return (
     <div className="formCenter">
       <form className="formFields" onSubmit={(event) => handleSubmit(event)}>
         <div className="formField">
           <label className="formFieldLabel" htmlFor="email">
-            E-Mail
+            Email
           </label>
           <input
             type="email"
@@ -52,13 +64,13 @@ const LogIn = () => {
         </div>
 
         <div className="formField">
-          <button className="formFieldButton" type="submit">
-            Log In
-          </button>{" "}
+          <button className="formFieldButton material-bubble" type="submit">
+            <span>Log In</span>
+          </button>
         </div>
       </form>
     </div>
   );
 };
 
-export default LogIn;
+export default LogInForm;

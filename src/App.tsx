@@ -1,30 +1,18 @@
-import { Route, Link, Routes } from "react-router-dom";
-import LogIn from "./Components/LogIn/logIn";
-import SignUp from "./Components/SignUp/SignUp";
-
+import { Route, Routes } from "react-router-dom";
+import { ROUTES } from "./constants";
 import "./App.css";
+import CustomerCabinet from "./Components/CustomerCabinet";
+import DefaultPage from "./Components/DefaultPage";
+import StartPage from "./Components/StartPage";
 
 const App = () => {
   return (
     <div className="App">
-      <div className="appAside" />
-
-      <div className="appForm">
-        <div className="pageSwitcher">
-          <Link to="/" className="pageSwitcherItem">
-            Sign Up
-          </Link>
-
-          <Link to="/logIn" className="pageSwitcherItem">
-            Sign In
-          </Link>
-        </div>
-
-        <Routes>
-          <Route path="/" element={<SignUp />} />
-          <Route path="/logIn" element={<LogIn />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path={ROUTES.GENERAL} element={<DefaultPage />} />
+        <Route path={ROUTES.HOME} element={<StartPage />} />
+        <Route path={ROUTES.MY_CABINET} element={<CustomerCabinet />} />
+      </Routes>
     </div>
   );
 };

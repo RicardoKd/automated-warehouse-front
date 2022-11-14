@@ -1,0 +1,13 @@
+.appAside {
+  width: 50%;
+  background-color: #6b5b95;
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+
+.appAsideText {
+  font-family: 'Major Mono Display', monospace;
+  font-size: 5rem;
+  margin-right: 40px;
+}
