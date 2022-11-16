@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { fetchCustomerCells } from "../Reducers/CellsReducer";
+import { fetchAllCells } from "../Reducers/AllCellsReducer";
 
 import ICellsState from "../Types/ICellsState";
 import { SLICE_NAMES } from "../constants";
@@ -10,27 +10,27 @@ const initialState: ICellsState = {
   value: [],
 };
 
-export const cellsReducer = createSlice({
-  name: SLICE_NAMES.CELLS,
+export const allCellsReducer = createSlice({
+  name: SLICE_NAMES.ALL_CELLS,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCustomerCells.pending, (state) => ({
+      .addCase(fetchAllCells.pending, (state) => ({
         ...state,
         status: "loading",
       }))
-      .addCase(fetchCustomerCells.fulfilled, (_state, action) => {
+      .addCase(fetchAllCells.fulfilled, (_state, action) => {
         return { status: "fulfilled", value: action.payload };
       })
-      .addCase(fetchCustomerCells.rejected, () => ({
+      .addCase(fetchAllCells.rejected, () => ({
         status: "failed",
         value: [],
       }));
   },
 });
 
-export const selectCellsState = (state: RootState) => state.cells;
-export const selectCells = (state: RootState) => state.cells.value;
+export const selectAllCellsState = (state: RootState) => state.allCells;
+export const selectAllCells = (state: RootState) => state.allCells.value;
 
-export default cellsReducer.reducer;
+export default allCellsReducer.reducer;

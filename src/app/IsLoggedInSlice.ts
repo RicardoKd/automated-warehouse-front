@@ -11,7 +11,7 @@ const initialState: IIsLoggedInState = {
   customerId: null,
 };
 
-export const IsLoggedInSlice = createSlice({
+export const isLoggedInSlice = createSlice({
   name: SLICE_NAMES.IS_LOGGED_IN,
   initialState,
   reducers,
@@ -31,9 +31,9 @@ export const IsLoggedInSlice = createSlice({
   },
 });
 
-export const { logOut } = IsLoggedInSlice.actions;
+export const { logOut } = isLoggedInSlice.actions;
 
 export const selectIsLoggedInState = (state: RootState) => state.isLoggedIn;
 export const selectIsLoggedIn = (state: RootState) => state.isLoggedIn.value;
 
-export default IsLoggedInSlice.reducer;
+export default isLoggedInSlice.reducer;

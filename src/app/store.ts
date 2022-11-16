@@ -1,9 +1,14 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import IsLoggedInReducer from "./IsLoggedInSlice";
-import cellsReducer from "./cellsSlice";
+import isLoggedInReducer from "./isLoggedInSlice";
+import rentedCellsReducer from "./rentedCellsSlice";
+import allCellsReducer from "./allCellsSlice";
 
 export const store = configureStore({
-  reducer: { isLoggedIn: IsLoggedInReducer, cells: cellsReducer },
+  reducer: {
+    isLoggedIn: isLoggedInReducer,
+    rentedCells: rentedCellsReducer,
+    allCells: allCellsReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
