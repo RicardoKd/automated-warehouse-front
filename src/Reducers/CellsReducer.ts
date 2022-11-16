@@ -6,7 +6,6 @@ export const fetchCustomerCells = createAsyncThunk(
   "fetchCustomerCells",
   async (customerId: string): Promise<ICell[]> => {
     try {
-      console.log("fetching");
       const response = await fetch(BASE_URL + `cells?ownerId=${customerId}`);
 
       if (!response.ok) {
