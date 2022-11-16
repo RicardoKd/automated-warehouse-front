@@ -1,10 +1,11 @@
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectIsLoggedInState } from "../../app/IsLoggedInSlice";
+import { selectIsLoggedInState } from "../../app/isLoggedInSlice";
 import { ROUTES } from "../../constants";
 import CellCardsContainer from "../CellCardsContainer";
-import { fetchCustomerCells } from "../../Reducers/CellsReducer";
+import { fetchCustomerRentedCells } from "../../Reducers/RentedCellsReducer";
+import RobotTracker from "../RobotTracker";
 
 const CustomerCabinet = () => {
   console.log("cabinet");
@@ -19,7 +20,7 @@ const CustomerCabinet = () => {
   useEffect(() => {
     if (isLoggedIn && customerId) {
       console.log("fethiching cells");
-      dispatch(fetchCustomerCells(customerId));
+      dispatch(fetchCustomerRentedCells(customerId));
     }
   }, []);
 
@@ -33,6 +34,7 @@ const CustomerCabinet = () => {
     <div>
       <nav>Navbar</nav>
       <CellCardsContainer />
+      <RobotTracker></RobotTracker>
     </div>
   );
 };

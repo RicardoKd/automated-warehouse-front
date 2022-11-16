@@ -1,5 +1,6 @@
 import { useState } from "react";
 import SignUp from "../../Services/SignUp";
+import styles from "./formStyles.module.css";
 
 const SignUpForm = () => {
   const [email, setEmail] = useState("");
@@ -23,16 +24,16 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="formCenter">
-      <form onSubmit={(event) => handleSubmit(event)} className="formFields">
-        <div className="formField">
-          <label className="formFieldLabel" htmlFor="name">
+    <div>
+      <form onSubmit={(event) => handleSubmit(event)}>
+        <div className="mb-40">
+          <label className={styles.formFieldLabel} htmlFor="name">
             Full Name
           </label>
           <input
             type="text"
             id="name"
-            className="formFieldInput"
+            className={styles.formFieldInput}
             placeholder="Enter your full name"
             name="name"
             value={name}
@@ -40,14 +41,14 @@ const SignUpForm = () => {
           />
         </div>
 
-        <div className="formField">
-          <label className="formFieldLabel" htmlFor="email">
+        <div className="mb-40">
+          <label className={styles.formFieldLabel} htmlFor="email">
             Email
           </label>
           <input
             type="email"
             id="email"
-            className="formFieldInput"
+            className={styles.formFieldInput}
             placeholder="Enter your email"
             name="email"
             value={email}
@@ -55,14 +56,14 @@ const SignUpForm = () => {
           />
         </div>
 
-        <div className="formField">
-          <label className="formFieldLabel" htmlFor="password">
+        <div className="mb-40">
+          <label className={styles.formFieldLabel} htmlFor="password">
             Password
           </label>
           <input
             type="password"
             id="password"
-            className="formFieldInput"
+            className={styles.formFieldInput}
             placeholder="Enter your password"
             name="password"
             value={password}
@@ -70,10 +71,10 @@ const SignUpForm = () => {
           />
         </div>
 
-        <div className="formField">
-          <label className="formFieldCheckboxLabel">
+        <div className="mb-40">
+          <label className={styles.formFieldCheckboxLabel}>
             <input
-              className="formFieldCheckbox"
+              className={styles.formFieldCheckbox}
               type="checkbox"
               name="hasAgreed"
               required={true}
@@ -81,14 +82,17 @@ const SignUpForm = () => {
               onChange={() => sethasAgreed((prevState) => !prevState)}
             />{" "}
             I agree all statements in{" "}
-            <a href="#" className="formFieldTermsLink">
+            <a href="#" className={styles.formFieldTermsLink}>
               terms of service
             </a>
           </label>
         </div>
 
-        <div className="formField">
-          <button className="formFieldButton material-bubble" type="submit">
+        <div>
+          <button
+            className={`${styles.formFieldButton} materialBubble`}
+            type="submit"
+          >
             <span>Sign Up</span>
           </button>
         </div>

@@ -1,0 +1,45 @@
+.formFieldLabel {
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  color: var(--main-text-color);
+}
+
+.formFieldInput {
+  width: 85%;
+  background-color: transparent;
+  border: none;
+  color: var(--main-text-color);
+  outline: none;
+  border-bottom: 1px solid #445366;
+  font-size: 1em;
+  font-weight: 300;
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+.formFieldButton {
+  border-radius: 25px;
+  font-size: 0.8em;
+  font-weight: 500;
+  padding: 15px 70px;
+}
+
+.formFieldCheckboxLabel {
+  color: var(--placeholder-text-color);
+  font-size: 0.9em;
+}
+
+.formFieldCheckbox {
+  position: relative;
+  top: 1.5px;
+}
+
+.formFieldTermsLink {
+  color: var(--main-text-color);
+  border-bottom: 1px solid var(--main-accent-color);
+  text-decoration: none;
+  display: inline-block;
+  padding-bottom: 2px;
+  margin-left: 5px;
+}

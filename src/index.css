@@ -1,6 +1,21 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+
+:root {
+  /* Colors */
+  --main-bg-color: #12130f;
+
+  --main-text-color: white;
+
+  --main-accent-color: #6b5b95;
+  --secondary-accent-color: #40434e;
+
+  --placeholder-text-color: #616e7f;
+
+  /* Fonts */
+  --secondary-font: "Major Mono Display", monospace;
+}
 
 * {
   margin: 0;
@@ -15,35 +30,46 @@
   box-sizing: border-box;
 }
 
+*::placeholder {
+  color: var(--placeholder-text-color);
+}
+
 html,
 body {
   width: 100%;
   height: 100%;
-  background-color: #12130f;
+  background-color: var(--main-bg-color);
 }
 
 .mr-20 {
   margin-right: 20px !important;
 }
 
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
+}
 
 /*
   Material bubble styles
 */
 
-.material-bubble {
+.materialBubble {
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
 }
 
-.material-bubble:active {
+.materialBubble:active {
   transform: translateY(3px);
 }
 
-.material-bubble {
+.materialBubble {
   position: relative;
   background-color: white;
-  color: #1b1b20;
+  color: var(--main-bg-color);
   border: none;
   overflow: hidden;
   box-shadow: none;
@@ -51,12 +77,12 @@ body {
   outline: none;
 }
 
-.material-bubble:hover {
+.materialBubble:hover {
   color: #e6e6e6;
   background-color: transparent;
 }
 
-.material-bubble::before {
+.materialBubble::before {
   content: "";
   position: absolute;
   top: 0;
@@ -66,23 +92,23 @@ body {
   transition: opacity 0.3s, border 0.3s;
 }
 
-.material-bubble:hover::before {
+.materialBubble:hover::before {
   opacity: 0;
 }
 
-.material-bubble span {
+.materialBubble span {
   z-index: 999;
   position: relative;
 }
 
-.material-bubble::after {
+.materialBubble::after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 200px;
   height: 200px;
-  background-color: #6b5b95;
+  background-color: var(--main-accent-color);
   border-color: transparent;
   border-radius: 50%;
   transform: translate(-10px, -70px) scale(0.1);
@@ -90,7 +116,7 @@ body {
   transition: transform 0.3s, opacity 0.3s, background-color 0.3s;
 }
 
-.material-bubble:hover::after {
+.materialBubble:hover::after {
   opacity: 1;
   transform-origin: 100px 100px;
   transform: scale(1) translate(-10px, -70px);

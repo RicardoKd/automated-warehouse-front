@@ -1,13 +1,13 @@
 import { Route, Routes } from "react-router-dom";
-import { ROUTES } from "./constants";
-import "./App.css";
+import styles from "./App.module.css";
 import CustomerCabinet from "./Components/CustomerCabinet";
 import DefaultPage from "./Components/DefaultPage";
 import StartPage from "./Components/StartPage";
+import { ROUTES } from "./constants";
 
 const App = () => {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Routes>
         <Route path={ROUTES.GENERAL} element={<DefaultPage />} />
         <Route path={ROUTES.HOME} element={<StartPage />} />

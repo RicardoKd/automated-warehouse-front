@@ -1,6 +1,7 @@
 const SLICE_NAMES = {
   IS_LOGGED_IN: "isLoggedIn",
-  CELLS: 'cells'
+  RENTED_CELLS: "rentedCells",
+  ALL_CELLS: "allCells",
 };
 
 const BASE_URL = "http://localhost:8080/";
@@ -11,4 +12,4 @@ const ROUTES = {
   MY_CABINET: "/myCabinet",
 };
 
-export { SLICE_NAMES, BASE_URL, ROUTES  };
+export { SLICE_NAMES, BASE_URL, ROUTES };

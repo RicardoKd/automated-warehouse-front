@@ -5,6 +5,9 @@
   justify-content: center;
 }
 
-.errorMessage {
-  margin-bottom: 20px;
+.appForm {
+  width: 50%;
+  background-color: var(--main-bg-color);
+  padding: 25px 40px;
+  overflow: auto;
 }

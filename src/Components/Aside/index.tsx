@@ -1,9 +1,9 @@
-import "./index.css";
+import style from "./index.module.css";
 
 const Aside = () => {
   return (
-    <div className="appAside">
-      <p className="appAsideText">
+    <div className={style.appAside}>
+      <p className={style.appAsideText}>
         Ware
         <br />
         House

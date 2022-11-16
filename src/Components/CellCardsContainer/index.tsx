@@ -1,12 +1,12 @@
 import { useMemo } from "react";
-import { selectCells } from "../../app/cellsSlice";
+import { selectRentedCells } from "../../app/rentedCellsSlice";
 import { useAppSelector } from "../../app/hooks";
 import CellCard from "../CellCard";
 import styles from "./index.module.css";
 
 const CellCardsContainer = () => {
   console.log("Cards container render");
-  const rentedCells = useAppSelector(selectCells);
+  const rentedCells = useAppSelector(selectRentedCells);
 
   const emptyRentedCellsCount = useMemo(() => {
     let count = 0;

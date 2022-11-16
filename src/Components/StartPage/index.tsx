@@ -2,7 +2,7 @@ import { useState } from "react";
 import Aside from "../Aside";
 import LogInForm from "../LogInForm";
 import SignUpForm from "../SignUpForm";
-import "./index.css";
+import styles from "./index.module.css";
 
 const StartPage = () => {
   const [logInComponent, setlogInComponent] = useState(true);
@@ -11,17 +11,17 @@ const StartPage = () => {
     <>
       <Aside />
 
-      <div className="appForm">
-        <div className="pageSwitcher">
+      <div className={styles.appForm}>
+        <div className={styles.pageSwitcher}>
           <span
             onClick={() => setlogInComponent(true)}
-            className="pageSwitcherItem"
+            className={styles.pageSwitcherItem}
           >
             Log In
           </span>
           <span
             onClick={() => setlogInComponent(false)}
-            className="pageSwitcherItem"
+            className={styles.pageSwitcherItem}
           >
             Sign Up
           </span>

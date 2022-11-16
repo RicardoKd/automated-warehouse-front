@@ -2,8 +2,8 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { BASE_URL } from "../constants";
 import ICell from "../Types/ICell";
 
-export const fetchCustomerCells = createAsyncThunk(
-  "fetchCustomerCells",
+export const fetchCustomerRentedCells = createAsyncThunk(
+  "fetchCustomerRentedCells",
   async (customerId: string): Promise<ICell[]> => {
     try {
       const response = await fetch(BASE_URL + `cells?ownerId=${customerId}`);
@@ -14,9 +14,9 @@ export const fetchCustomerCells = createAsyncThunk(
 
       const responseJSON = await response.json();
 
-      let customerCells: ICell[] = responseJSON.payload.queryResult;
+      let rentedCells: ICell[] = responseJSON.payload.queryResult;
 
-      return customerCells;
+      return rentedCells;
     } catch (error) {
       console.log("failed to fetch cells", error);
       return Promise.reject("error");

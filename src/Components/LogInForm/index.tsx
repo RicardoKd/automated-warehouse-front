@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectIsLoggedIn } from "../../app/IsLoggedInSlice";
+import { selectIsLoggedIn } from "../../app/isLoggedInSlice";
 import { logIn } from "../../Reducers/IsLoggedInReducer";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../constants";
+import styles from "../SignUpForm/formStyles.module.css";
 
 const LogInForm = () => {
   const [email, setEmail] = useState("");
@@ -31,16 +32,16 @@ const LogInForm = () => {
   }, [isLoggedIn]);
 
   return (
-    <div className="formCenter">
-      <form className="formFields" onSubmit={(event) => handleSubmit(event)}>
-        <div className="formField">
-          <label className="formFieldLabel" htmlFor="email">
+    <div>
+      <form onSubmit={(event) => handleSubmit(event)}>
+        <div className="mb-40">
+          <label className={styles.formFieldLabel} htmlFor="email">
             Email
           </label>
           <input
             type="email"
             id="email"
-            className="formFieldInput"
+            className={styles.formFieldInput}
             placeholder="Enter your email"
             name="email"
             value={email}
@@ -48,14 +49,14 @@ const LogInForm = () => {
           />
         </div>
 
-        <div className="formField">
-          <label className="formFieldLabel" htmlFor="password">
+        <div className="mb-40">
+          <label className={styles.formFieldLabel} htmlFor="password">
             Password
           </label>
           <input
             type="password"
             id="password"
-            className="formFieldInput"
+            className={styles.formFieldInput}
             placeholder="Enter your password"
             name="password"
             value={password}
@@ -63,8 +64,11 @@ const LogInForm = () => {
           />
         </div>
 
-        <div className="formField">
-          <button className="formFieldButton material-bubble" type="submit">
+        <div>
+          <button
+            className={`${styles.formFieldButton} materialBubble`}
+            type="submit"
+          >
             <span>Log In</span>
           </button>
         </div>
