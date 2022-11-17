@@ -34,7 +34,7 @@ const CustomerCabinet = () => {
     <div>
       <nav>Navbar</nav>
       <CellCardsContainer />
-      <RobotTracker></RobotTracker>
+      <RobotTracker />
     </div>
   );
 };
