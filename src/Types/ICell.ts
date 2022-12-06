@@ -3,4 +3,5 @@ export default interface ICell {
   description: string;
   isOccupied: boolean;
   rentEndDate: string;
+  ownerId: string
 }
