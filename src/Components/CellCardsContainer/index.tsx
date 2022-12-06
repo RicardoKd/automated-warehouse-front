@@ -5,7 +5,6 @@ import CellCard from "../CellCard";
 import styles from "./index.module.css";
 
 const CellCardsContainer = () => {
-  // console.log("Cards container render");
   const rentedCells = useAppSelector(selectRentedCells);
 
   const emptyRentedCellsCount = useMemo(() => {
