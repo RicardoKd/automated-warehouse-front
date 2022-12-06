@@ -12,4 +12,9 @@ const ROUTES = {
   MY_CABINET: "/myCabinet",
 };
 
-export { SLICE_NAMES, BASE_URL, ROUTES };
+const WAREHOUSE_SIZE = Object.freeze({
+  ROWS: 15,
+  COLUMNS: 15,
+});
+
+export { SLICE_NAMES, BASE_URL, ROUTES, WAREHOUSE_SIZE };
