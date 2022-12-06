@@ -25,7 +25,6 @@ const LogInForm = () => {
   };
 
   useEffect(() => {
-    console.log(`logInForm useEff. isLoggedIn: ${isLoggedIn}`);
     if (isLoggedIn) {
       navigate(ROUTES.MY_CABINET);
     }

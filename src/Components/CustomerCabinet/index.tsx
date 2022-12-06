@@ -8,8 +8,6 @@ import { fetchCustomerRentedCells } from "../../Reducers/RentedCellsReducer";
 import RobotTracker from "../RobotTracker";
 
 const CustomerCabinet = () => {
-  console.log("cabinet");
-
   const navigate = useNavigate();
   const { value: isLoggedIn, customerId } = useAppSelector(
     selectIsLoggedInState,
@@ -19,7 +17,6 @@ const CustomerCabinet = () => {
 
   useEffect(() => {
     if (isLoggedIn && customerId) {
-      console.log("fethiching cells");
       dispatch(fetchCustomerRentedCells(customerId));
     }
   }, []);
