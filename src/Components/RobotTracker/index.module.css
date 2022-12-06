@@ -1,7 +1,56 @@
+:root {
+  --corridor-width: 15px;
+
+  --row-margin: 6px;
+
+  --cell-border-width: 4px;
+  --cell-height: 15px;
+  --cell-width: calc(15px + var(--cell-border-width));
+
+  --row-width: calc(var(--cell-margin) * 15);
+
+  --tracker-width: calc(var(--cell-width) * 15 + var(--corridor-width));
+  --tracker-height: calc(var(--cell-height) * 15 + var(--corridor-width) * 15);
+}
+
 .RobotTrackerWrapper {
-  width: 500px;
-  height: 500px;
-  display: flex;
-  flex-wrap: wrap;
+  width: var(--tracker-width);
+  height: var(--tracker-height);
   background-color: #40434e;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+}
+
+.robotTrackerRow {
+  width: var(--row-width);
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  background: transparent;
+}
+
+.robotTrackerRow:first-child {
+  padding-bottom: 15px;
+}
+
+.robotTrackerCell {
+  width: var(--cell-width);
+  height: var(--cell-height);
+  background-color: green;
+  border-left: black var(--cell-border-width) solid;
+}
+
+.occupiedRobotTrackerCell {
+  background-color: red;
+}
+
+#robot {
+  width: calc(var(--corridor-width) / 2);
+  height: calc(var(--corridor-width) / 2);
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50%;
 }

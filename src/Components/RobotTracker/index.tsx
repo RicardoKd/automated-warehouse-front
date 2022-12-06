@@ -1,48 +1,94 @@
-import { useEffect, useRef } from "react";
+/* eslint-disable no-loop-func */
+import { useEffect, useRef, useState } from "react";
+import { selectAllCellsState } from "../../app/allCellsSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectIsLoggedInState } from "../../app/isLoggedInSlice";
 import { selectRentedCellsState } from "../../app/rentedCellsSlice";
-import { BASE_URL } from "../../constants";
+import { BASE_URL, WAREHOUSE_SIZE } from "../../constants";
 import { fetchAllCells } from "../../Reducers/AllCellsReducer";
-import style from "./index.module.css";
+import styles from "./index.module.css";
 
 const RobotTracker = () => {
-  console.log("RobotTracker render");
-
   const { value: isLoggedIn, customerId } = useAppSelector(
     selectIsLoggedInState,
   );
 
-  const { status } = useAppSelector(selectRentedCellsState);
+  const { status: rentedCellsStatus } = useAppSelector(selectRentedCellsState);
+  const { status: allCellsStatus, value: allCells } =
+    useAppSelector(selectAllCellsState);
 
-  const rp = useRef({});
+  const [robotPos, setRobotPosition] = useState({ row: 0, column: 0 });
+  const robotPositionIntervalId = useRef(0);
 
   const dispatch = useAppDispatch();
 
-  const robotPositionIntervalFetcher = () =>
-    setInterval(async () => {
-      const response = await fetch(BASE_URL + "robot/position");
-      const {
-        payload: { robotPosition },
-      } = await response.json();
-      console.log(robotPosition);
-      rp.current = robotPosition;
-    }, 4000);
+  const robotPositionIntervalFetcher = () => {
+    if (allCellsStatus === "fulfilled") {
+      return setInterval(async () => {
+        const response = await fetch(BASE_URL + "robot/position");
+        const {
+          payload: { robotPosition },
+        } = await response.json();
+        setRobotPosition(robotPosition);
+        console.log(robotPosition);
+      }, 1000);
+    }
+  };
 
   useEffect(() => {
-    if (isLoggedIn && customerId && status === "fulfilled") {
-      dispatch(fetchAllCells());
-      robotPositionIntervalFetcher();
-    }
-  }, [status]);
+    clearInterval(robotPositionIntervalId.current);
+    robotPositionIntervalId.current = Number(robotPositionIntervalFetcher());
+  }, [allCellsStatus]);
 
-  // const warehouseRepresentations = () => {
-  //   for (let index = 0; index < 50; index++) {}
-  // };
+  useEffect(() => {
+    if (isLoggedIn && customerId && rentedCellsStatus === "fulfilled") {
+      dispatch(fetchAllCells());
+    }
+  }, [rentedCellsStatus]);
+
+  const grapichCellRepresentation = () => {
+    const rows = [];
+    let cellIndex = 0;
+
+    for (let i = 0; i < WAREHOUSE_SIZE.ROWS; i++) {
+      rows.push(
+        <div className={styles.robotTrackerRow} key={i}>
+          {(() => {
+            const row = [];
+
+            for (let j = 0; j < WAREHOUSE_SIZE.COLUMNS; j++) {
+              row.push(
+                <div
+                  className={
+                    allCells[cellIndex].isOccupied
+                      ? `${styles.robotTrackerCell} ${styles.occupiedRobotTrackerCell}`
+                      : styles.robotTrackerCell
+                  }
+                  key={j}
+                />,
+              );
+              cellIndex++;
+            }
+
+            return row;
+          })()}
+        </div>,
+      );
+    }
+
+    return rows;
+  };
 
   return (
-    <div className={style.RobotTrackerWrapper}>
-      {/* <div>{warehouseRepresentations}</div> */}
+    <div className={styles.RobotTrackerWrapper}>
+      {allCellsStatus === "fulfilled" ? grapichCellRepresentation() : null}
+      <div
+        style={{
+          left: robotPos.column * 19 + 3.75,
+          bottom: robotPos.row * 30 + 3.75,
+        }}
+        id={styles.robot}
+      ></div>
     </div>
   );
 };
