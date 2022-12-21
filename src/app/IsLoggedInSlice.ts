@@ -8,7 +8,7 @@ import { SLICE_NAMES } from "../constants";
 const initialState: IIsLoggedInState = {
   status: "idle",
   value: false,
-  customerId: null,
+  ownerId: null,
 };
 
 export const isLoggedInSlice = createSlice({
@@ -21,12 +21,12 @@ export const isLoggedInSlice = createSlice({
       .addCase(logIn.fulfilled, (_state, action) => ({
         status: "fulfilled",
         value: true,
-        customerId: action.payload,
+        ownerId: action.payload,
       }))
       .addCase(logIn.rejected, () => ({
         status: "failed",
         value: false,
-        customerId: null,
+        ownerId: null,
       }));
   },
 });

@@ -55,8 +55,8 @@ const CellCard = ({ cell }: { cell: ICell }) => {
       </p>
       <p>Rent end date: {`${endDay}.${endMonth}.${endYear}`}</p>
       <p>Rent days left: {differenceInDays}</p>
-      <button onClick={() => GetPhysicalCell(ownerId, [id])}>
-        Get content
+      <button className={`${styles.getContentButton} materialBubble`} onClick={() => GetPhysicalCell(ownerId, [id])}>
+        <span>Get content</span>
       </button>
     </div>
   );

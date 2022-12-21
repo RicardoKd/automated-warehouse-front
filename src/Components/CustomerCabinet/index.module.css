@@ -1,0 +1,23 @@
+.CustomerCabinet {
+  width: 100%;
+}
+
+.navigation {
+  height: 40px;
+  background-color: darkslateblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navigation > * {
+  margin: 0 20px;
+}
+
+.CustomerCabinetNavButton {
+  padding: 4px 5px;
+}
+
+.CustomerCabinetNavButton::after {
+  background-color: darkslateblue !important;
+}

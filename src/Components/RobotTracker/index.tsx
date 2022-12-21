@@ -9,7 +9,7 @@ import { fetchAllCells } from "../../Reducers/AllCellsReducer";
 import styles from "./index.module.css";
 
 const RobotTracker = () => {
-  const { value: isLoggedIn, customerId } = useAppSelector(
+  const { value: isLoggedIn, ownerId: customerId } = useAppSelector(
     selectIsLoggedInState,
   );
 

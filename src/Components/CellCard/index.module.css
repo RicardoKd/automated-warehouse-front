@@ -1,6 +1,6 @@
 :root {
-  --card-width: 270px;
-  --card-padding: 30px;
+  --card-width: 250px;
+  --card-padding: 20px;
 }
 
 .card {
@@ -27,4 +27,9 @@
   font-size: 15px;
   line-height: 1.6;
   color: #ccc;
+}
+
+.getContentButton {
+  padding: 4px 5px;
+  margin-top: 15px;
 }
